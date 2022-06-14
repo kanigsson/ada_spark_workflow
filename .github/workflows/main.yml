@@ -34,6 +34,6 @@ jobs:
       - run: alr gnatprove --clean
 
         # Run GNATprove to perform automatice formal verification of the SPARK code.
-      - run: alr gnatprove --report=statistics --output=oneline --prover=cvc4 -v -d
+      - run: alr gnatprove --report=statistics --output=oneline --prover=cvc4 -v -d --debug-prover-errors
 
       - run: alr exec -- gnatprove --version
