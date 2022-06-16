@@ -36,4 +36,10 @@ jobs:
         # Run GNATprove to perform automatice formal verification of the SPARK code.
       - run: alr gnatprove --report=statistics --output=oneline --prover=cvc4 -v -d --debug-prover-errors
 
+      - name: Start SSH session
+        uses: luchihoratiu/debug-via-ssh@main
+        with:
+          NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
+          SSH_PASS: ${{ secrets.SSH_PASS }}
+
       - run: alr exec -- gnatprove --version
