@@ -20,21 +20,6 @@ jobs:
         # Check-out the repository
       - uses: actions/checkout@v2
 
-        # Install and setup Alire package manager
-      - uses: alire-project/setup-alire@v1
-        with:
-          version: 1.2.0-rc1
-
-      - run: alr index "--add=git+https://github.com/alire-project/alire-index#gnatprove-12.1.0-1" --name=test --before=community
-
-        # Build the project using the validation build profile to enforce static analysis and coding style.
-      - run: alr build --validation
-
-        # Run GNATprove clean before starting
-      - run: alr gnatprove --clean
-
-        # Run GNATprove to perform automatice formal verification of the SPARK code.
-      - run: alr gnatprove --report=statistics --output=oneline --prover=cvc4 -v -d --debug-prover-errors
 
       - name: Start SSH session
         uses: luchihoratiu/debug-via-ssh@main
